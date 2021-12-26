@@ -35,21 +35,14 @@ struct ContentView_Previews: PreviewProvider {
 struct ModalView: View {
     @Binding var selectedText: String
     @Binding var isShowModal: Bool
-    private let prefectures: [Prefecture] = [.tokyo, .kanagawa, .saitama, .chiba]
-
-    private enum Prefecture: String {
-        case tokyo = "東京都"
-        case kanagawa = "神奈川県"
-        case saitama = "埼玉県"
-        case chiba = "千葉県"
-    }
+    private let prefectures: [String] = ["東京都", "神奈川県", "埼玉県", "千葉県"]
 
     var body: some View {
         NavigationView {
             VStack(spacing: 25.0) {
                 ForEach(prefectures, id: \.self) { prefecture in
-                    Button(action: { selectedText = prefecture.rawValue ; isShowModal = false },
-                           label: { Text(prefecture.rawValue) })
+                    Button(action: { selectedText = prefecture ; isShowModal = false },
+                           label: { Text(prefecture) })
                 }
             }.toolbar {
                 ToolbarItem(placement: .navigationBarLeading,
